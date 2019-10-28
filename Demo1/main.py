@@ -5,14 +5,14 @@
 import sys
 sys.path.append("./")
 from PyQt5.QtWidgets import QApplication,QWidget,QMainWindow,QMdiSubWindow
-from Demo1 import Ui_main,Ui_setting
+from demo1 import Ui_main,Ui_setting
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
     ui = Ui_main.Ui_MainWindow()
     ui.setupUi(MainWindow)
 
-    ui_setting = Ui_setting.Ui_Form()
+    ui_setting = Ui_setting.Ui_Setting()
     widget_setting = QWidget()
     ui_setting.setupUi(widget_setting)
     sub = QMdiSubWindow()
