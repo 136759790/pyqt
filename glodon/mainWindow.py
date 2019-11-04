@@ -3,6 +3,7 @@ sys.path.append('./')
 from PyQt5.QtWidgets import *
 from glodon.mainWin.Ui_mainWindow import Ui_MainWindow
 from glodon.setting.setting import Setting
+from glodon.query.query import GlodonQuery
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent=parent)
@@ -12,10 +13,11 @@ class MainWindow(QMainWindow):
         ui = Ui_MainWindow()
         ui.setupUi(self)
         ui.btn_setting.clicked.connect(lambda:self.btn_setting(ui))
+        ui.btn_query.clicked.connect(lambda:GlodonQuery().query(ui))
         self.show()
     
     def btn_query(self,ui):
-        
+        print(ui.input_ws_id.text())
     
     def btn_setting(self,ui):
         # appkey secret url
