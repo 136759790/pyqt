@@ -23,8 +23,9 @@ class MainWindow(QMainWindow):
         # appkey secret url
         set = Setting()
         appkey =ui.input_appkey.text()
-        if set.selectSetting('appkey'):
-            set.updateSetting('appkey',appkey)
+        apk = set.selectSetting('appkey')
+        if apk:
+            set.updateSetting('appkey',appkey,apk[0][0])
         else:
             set.insertSetting('appkey',appkey)
         secret =ui.input_secret.text()

@@ -9,14 +9,13 @@ class Setting():
 
     def selectSetting(self,code):
         conn = sqlite3.connect(self.db_name)
-        print(code)
         cursor = conn.cursor()
         cursor.execute('select * from glodon_setting where code = ?',(code,))
         result = cursor.fetchall()
-        print(result)
         cursor.close()
         conn.commit()
         conn.close()
+        return result
     
     def insertSetting(self,code,value):
         conn = sqlite3.connect(self.db_name)
@@ -25,10 +24,10 @@ class Setting():
         cursor.close()
         conn.commit()
         conn.close()
-    def updateSetting(self,code,value):
+    def updateSetting(self,code,value,id):
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
-        cursor.execute('update glodon_setting set code = ? , value = ? , ctime = ?',[code,value,datetime.datetime.now()])
+        cursor.execute('update glodon_setting set code = ? , value = ? , ctime = ? where id = ?',[code,value,datetime.datetime.now(),id])
         cursor.close()
         conn.commit()
         conn.close()

@@ -4,10 +4,9 @@ class DlgTools():
     def __init__(self):
         super().__init__()
         self.dlg = QDialog()
+        self.ui = Ui_dlg_error()
     def error(self,msg):
-        ui = Ui_dlg_error()
-        print(ui.__dict__)
-        # ui.label_dlg.setText(msg)
-        ui.setupUi(self.dlg)
-        self.dlg.show()
+        self.ui.setupUi(self.dlg)
+        self.ui.text_msg.setText(msg)
+        self.dlg.exec_()
     
