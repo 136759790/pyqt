@@ -1,0 +1,60 @@
+<script>
+    let pax =0
+    let pay =Math.sqrt(48)
+    let pbx =0
+    let pby =0
+    let pcx =4
+    let pcy =0
+
+    let max =0
+    let may =Math.sqrt(3)
+
+    let mbx =0
+    let mby =0
+
+    let mcx 
+    let mcy 
+
+    let bc = Math.sqrt(Math.pow(pbx - pcx,2) + Math.pow(pcy - pby,2))
+    let ac = Math.sqrt(Math.pow(pcx - pax,2) + Math.pow(pcy - pay,2))
+    let ab = Math.sqrt(Math.pow(pbx - pax,2) + Math.pow(pby - pay,2))
+    let mab =  Math.sqrt(Math.pow(mbx - max,2) + Math.pow(mby - may,2))
+    let r = mab / ab
+    let mac =  ac * r
+    let mbc =  bc * r
+    console.log("mab,mac,mbc",mab,mac,mbc)
+    
+
+    // let cosA = (Math.pow(ac,2) + Math.pow(ab,2) - Math.pow(bc,2)) / (ac*ab*2)
+    // let deg = Math.acos(cosA) * 360 / (2*Math.PI) //BAC的角度
+    // console.log('BAC的角度为',deg)
+    // let h = Math.sin(deg * 2 *Math.PI / 360) * ac //图纸的 C到AB的垂直距离
+    // console.log('图纸的 C到AB的垂直距离',h)
+    // let mabLength = Math.sqrt(Math.pow(mbx - max,2) + Math.pow(mby - may,2)) //模型AB的长度
+    // console.log('模型AB的长度',mabLength)
+    // let H = h * mabLength / ab //模型的 C到AB的垂直距离
+    // console.log('模型的 C到AB的垂直距离',H)
+    // mm = (mby - may) / (mbx - max)
+    // let midhd = Math.atan(mm)
+    // let midJd = getjd(midhd)
+    // console.log("mm",midJd)
+    // mcx = max + H / Math.sin(deg * 2 * Math.PI / 360) * (Math.cos((90-deg) * 2 * Math.PI / 360))
+    // mcy = may + H / Math.sin(deg * 2 * Math.PI / 360) * (Math.sin((90-deg) * 2 * Math.PI / 360))
+    mm = (mby - may) / (mbx - max)
+    mm1 = (Math.pow(mac,2) +Math.pow(mab,2)- Math.pow(mbc,2))/(2*mac*mab)
+    let mid =  getjd(Math.acos(mm1)) -getjd(Math.atan(mm)) 
+    console.log('角度',mid)
+    mcx = max + mac * Math.sin(getHd(mid))
+    mcy = may + mac * Math.cos(getHd(mid))
+    console.log(mcx,mcy)
+
+
+
+    function getHd(jd){
+        return jd * (2* Math.PI/360)
+    }
+    function getjd(hd){
+        return hd /(2* Math.PI/360)
+    }
+
+</script>

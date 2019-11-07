@@ -1,0 +1,36 @@
+<script>
+    // 已知三角形的两点坐标,和三个边长,求第三点的坐标.
+function CalculateTriangleThirdPoint(const Vector2& vA, const Vector2& vB, Vector2& vC, float a, float b, float c){
+    float cosA = (b*b + c*c - a*a) / (2*b*c);
+    if (cosA > 1.0f || cosA < -1.0f)
+    {
+        return false;
+    }
+    float angleA = acosf(cosA);
+    float sinA = sinf(angleA);
+
+    // 判断C在直线AB的左边还是右边
+    if ((vA.x-vC.x)*(vB.y-vC.y) - (vB.x-vC.x)*(vA.y-vC.y) > 0.0f)
+    {
+        sinA = -sinA;
+    }
+
+    Vector2 vAB = vB - vA;
+
+    // 对向量AB旋转A的角度,即得到AC的向量
+    Vector2 vAC;
+    vAC.x =  cosA*vAB.x + sinA*vAB.y;
+    vAC.y = -sinA*vAB.x + cosA*vAB.y;
+    D3DXVec2Normalize(&vAC, &vAC);
+
+    vC = vA + vAC*b;
+
+    /*
+    // 验证用
+    Vector2 vBC = vC - vB;
+    float disBC = sqrtf(vBC.x*vBC.x + vBC.y*vBC.y);
+    */
+
+    return true;
+}
+</script>
